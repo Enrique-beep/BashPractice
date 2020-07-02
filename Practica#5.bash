@@ -2,7 +2,7 @@
 
 # <!--- FUNCTIONS --->
 countWithoutSpaces () {
-    echo -n "Introduzca una palabra: "
+    echo -n "Introduzca una expresion: "
     read expresion
     wordsNumber=$(echo -n $expresion | wc -w)
     echo -n "Caracteres: " `expr ${#expresion} - $wordsNumber + 1`
@@ -10,9 +10,17 @@ countWithoutSpaces () {
 }
 
 countWithSpaces () {
-    echo -n "Introduzca una palabra: "
+    echo -n "Introduzca una expresion: "
     read expresion
     echo -n "Caracteres: " ${#expresion}
+    read pause
+}
+
+replaceSpaces () {
+    echo -n "Introduzca una expresion: "
+    read expresion
+    echo -n "Salida: "
+    echo $expresion | sed -e 's/ /_/g'
     read pause
 }
 
@@ -36,7 +44,7 @@ while [ $option != 7 ]; do
         3) ;;
         4) ;;
         5) ;;
-        6) ;;
+        6) replaceSpaces;;
         7) break;;
         *) echo "Option No valited" ;;
     esac
