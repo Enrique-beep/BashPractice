@@ -35,6 +35,14 @@ octaltoDecimal () {
     echo "Decimal: " $dec
     read pause 
 }
+
+hexaToDecimal() {
+    echo "  HEXADECIMAL -> DECIMAL"
+    echo -n "Introduzca hexadecimal: "
+    read hexa
+
+    read pause
+}
 # <!---   MAIN    --->
 option=0
 while [ $option != 9 ]; do
@@ -54,7 +62,7 @@ while [ $option != 9 ]; do
     case $option in
         1) binaryToDecimal;;
         2) octaltoDecimal;;
-        3) ;;
+        3) hexaToDecimal;;
         4) ;;
         5) ;;
         6) ;;
