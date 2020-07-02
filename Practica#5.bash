@@ -1,6 +1,9 @@
 #! /bin/bash
 
 # <!--- FUNCTIONS --->
+function countWithoutSpaces() {
+    echo -n "Introduzca una palabra: "
+}
 
 # <!---   MAIN    --->
 option=0
@@ -12,6 +15,7 @@ while [ $option != 7 ]; do
     echo "[5] Convertir Minúsculas a Mayúsculas."
     echo "[6] Cambiar los espacios de una oración por '_'"
     echo "[7] Salir"
+    echo -n "Opcion: "
     read option
 
     clear
