@@ -17,6 +17,20 @@ countVowels () {
     read pause
 }
 
+toLower () {
+    echo -n "Introduzca una expresion: "
+    read expresion
+    echo -n "Conversion: " $expresion | tr '[:upper:]' '[:lower:]'
+    read pause
+}
+
+toUpper () {
+    echo -n "Introduzca una expresion: "
+    read expresion
+    echo -n "Conversion: " $expresion | tr '[:lower:]' '[:upper:]'
+    read pause
+}
+
 countWithSpaces () {
     echo -n "Introduzca una expresion: "
     read expresion
@@ -50,8 +64,8 @@ while [ $option != 7 ]; do
         1) countWithoutSpaces;;
         2) countWithSpaces;;
         3) countVowels;;
-        4) ;;
-        5) ;;
+        4) toLower;;
+        5) toUpper;;
         6) replaceSpaces;;
         7) break;;
         *) echo "Option No valited" ;;
