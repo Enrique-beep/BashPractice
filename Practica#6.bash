@@ -26,7 +26,6 @@ octaltoDecimal () {
     dec=0
     base=1
     temp=$octal
-
     while [ $temp != 0 ]; do
         laux=$(expr $temp % 10)
         temp=$(expr $temp / 10)
