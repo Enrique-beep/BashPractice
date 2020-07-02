@@ -6,7 +6,6 @@ binaryToDecimal () {
     echo -n "Introduzca binario: "
     read bin
     while [ $bin != 0 ]; do
-        num=$bin
         dec=0
         pow=1
         while [ $bin != 0 ]; do
@@ -17,6 +16,24 @@ binaryToDecimal () {
         done
         echo "Decimal: " $dec
     done
+    read pause 
+}
+
+octaltoDecimal () {
+    echo "  OCTAL -> DECIMAL"
+    echo -n "Introduzca octal: "
+    read octal
+    dec=0
+    base=1
+    temp=$octal
+
+    while [ $temp != 0 ]; do
+        laux=$(expr $temp % 10)
+        temp=$(expr $temp / 10)
+        dec=$((dec + (laux*base)))
+        base=$((base*8))
+    done
+    echo "Decimal: " $dec
     read pause 
 }
 # <!---   MAIN    --->
@@ -37,7 +54,7 @@ while [ $option != 9 ]; do
     clear
     case $option in
         1) binaryToDecimal;;
-        2) ;;
+        2) octaltoDecimal;;
         3) ;;
         4) ;;
         5) ;;
