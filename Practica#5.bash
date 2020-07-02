@@ -2,6 +2,7 @@
 
 # <!--- FUNCTIONS --->
 countWithoutSpaces () {
+    echo "  CONTAR SIN ESPACIOS"
     echo -n "Introduzca una expresion: "
     read expresion
     wordsNumber=$(echo -n $expresion | wc -w)
@@ -10,6 +11,7 @@ countWithoutSpaces () {
 }
 
 countVowels () {
+    echo "  CONTAR VOCALES"
     echo -n "Introduzca una expresion: "
     read expresion
     vowels=$(echo $expresion | sed "s/[^aeiou]//g")
@@ -18,6 +20,7 @@ countVowels () {
 }
 
 toLower () {
+    echo "  CONVERTIR A MINUSCULAS"
     echo -n "Introduzca una expresion: "
     read expresion
     echo -n "Conversion: " $expresion | tr '[:upper:]' '[:lower:]'
@@ -25,6 +28,7 @@ toLower () {
 }
 
 toUpper () {
+    echo "  CONVERTIR A MAYUSCULAS"
     echo -n "Introduzca una expresion: "
     read expresion
     echo -n "Conversion: " $expresion | tr '[:lower:]' '[:upper:]'
@@ -32,6 +36,7 @@ toUpper () {
 }
 
 countWithSpaces () {
+    echo "  CONTAR CON ESPACIOS"
     echo -n "Introduzca una expresion: "
     read expresion
     echo -n "Caracteres: " ${#expresion}
@@ -39,6 +44,7 @@ countWithSpaces () {
 }
 
 replaceSpaces () {
+    echo "  REMPLAZAR ESPACIOS"
     echo -n "Introduzca una expresion: "
     read expresion
     echo -n "Salida: "
