@@ -9,11 +9,18 @@ countWithoutSpaces () {
     read pause
 }
 
+countWithSpaces () {
+    echo -n "Introduzca una palabra: "
+    read expresion
+    echo -n "Caracteres: " ${#expresion}
+    read pause
+}
+
 # <!---   MAIN    --->
 option=0
 while [ $option != 7 ]; do
-    echo "[1] Numero de caracteres de una expresion."
-    echo "[2] Imprime la longitud de una expresion."
+    echo "[1] Imprime la longitud de una expresion sin espacios."
+    echo "[2] Imprime la longitud de una expresion con espacios."
     echo "[3] Imprime cuantas vocales hay en una expresion."
     echo "[4] Convertir Mayúsculas a Minúsculas."
     echo "[5] Convertir Minúsculas a Mayúsculas."
@@ -25,7 +32,7 @@ while [ $option != 7 ]; do
     clear
     case $option in 
         1) countWithoutSpaces;;
-        2) ;;
+        2) countWithSpaces;;
         3) ;;
         4) ;;
         5) ;;
