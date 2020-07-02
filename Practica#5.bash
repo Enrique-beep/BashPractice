@@ -1,26 +1,30 @@
 #! /bin/bash
 
 # <!--- FUNCTIONS --->
-function countWithoutSpaces() {
+countWithoutSpaces () {
     echo -n "Introduzca una palabra: "
+    read expresion
+    wordsNumber=$(echo -n $expresion | wc -w)
+    echo -n "Caracteres: " `expr ${#expresion} - $wordsNumber + 1`
+    read pause
 }
 
 # <!---   MAIN    --->
 option=0
 while [ $option != 7 ]; do
-    echo "[1] Numero de caracteres de una palabra."
-    echo "[2] Imprime la longitud de una palabra."
-    echo "[3] Imprime cuantas vocales hay en una palabra."
+    echo "[1] Numero de caracteres de una expresion."
+    echo "[2] Imprime la longitud de una expresion."
+    echo "[3] Imprime cuantas vocales hay en una expresion."
     echo "[4] Convertir Mayúsculas a Minúsculas."
     echo "[5] Convertir Minúsculas a Mayúsculas."
-    echo "[6] Cambiar los espacios de una oración por '_'"
+    echo "[6] Cambiar los espacios de una expresion por '_'"
     echo "[7] Salir"
     echo -n "Opcion: "
     read option
 
     clear
     case $option in 
-        1) ;;
+        1) countWithoutSpaces;;
         2) ;;
         3) ;;
         4) ;;
