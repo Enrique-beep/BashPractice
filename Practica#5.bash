@@ -74,7 +74,7 @@ while [ $option != 7 ]; do
         5) toUpper;;
         6) replaceSpaces;;
         7) break;;
-        *) echo "Option No valited" ;;
+        *) echo "Opcion no valida" ;;
     esac
     clear 
 done
