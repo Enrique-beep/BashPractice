@@ -9,6 +9,14 @@ countWithoutSpaces () {
     read pause
 }
 
+countVowels () {
+    echo -n "Introduzca una expresion: "
+    read expresion
+    vowels=$(echo $expresion | sed "s/[^aeiou]//g")
+    echo "Numero de vocales: " ${#vowels}
+    read pause
+}
+
 countWithSpaces () {
     echo -n "Introduzca una expresion: "
     read expresion
@@ -41,7 +49,7 @@ while [ $option != 7 ]; do
     case $option in 
         1) countWithoutSpaces;;
         2) countWithSpaces;;
-        3) ;;
+        3) countVowels;;
         4) ;;
         5) ;;
         6) replaceSpaces;;
