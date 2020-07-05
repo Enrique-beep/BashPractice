@@ -43,13 +43,29 @@ hexaToDecimal() {
 
     read pause
 }
+
+decimalToBinary() {
+    echo "  DECIMAL -> BINARIO"
+    echo -n "Introduzca decimal: "
+    read dec
+
+    i=1
+    while [ $dec != 0 ]; do
+        var=`expr $dec % 2`
+        BIN[$i]="$var"
+        i=`expr $i + 1`
+        dec=`expr $dec / 2` 
+    done
+    read pause
+}
+
 # <!---   MAIN    --->
 option=0
 while [ $option != 9 ]; do
     echo "[1] Convertir un numero Binario a Decimal"
     echo "[2] Convertir un numero Octal a Decimal"
-    echo "[3] Convertir un numero Hexadecimal a Decimal"
-    echo "[4] Convertir un numero Decimal a Binario"
+    echo "[3] Convertir un numero Hexadecimal a Decimal"  # PENDIENTE
+    echo "[4] Convertir un numero Decimal a Binario"      # PENDIENTE
     echo "[5] Convertir un numero Decimal a Octal"
     echo "[6] Convertir un numero Decimal a Hexadecimal"
     echo "[7] Convertir un numero Binario a Hexadecimal"
@@ -63,7 +79,7 @@ while [ $option != 9 ]; do
         1) binaryToDecimal;;
         2) octaltoDecimal;;
         3) hexaToDecimal;;
-        4) ;;
+        4) decimalToBinary;;
         5) ;;
         6) ;;
         7) ;;
