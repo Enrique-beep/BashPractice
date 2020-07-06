@@ -50,12 +50,14 @@ decimalToBinary() {
     read dec
 
     i=1
-    while [ $dec != 0 ]; do
-        var=`expr $dec % 2`
-        BIN[$i]="$var"
-        i=`expr $i + 1`
+    bin=""
+    while [ $dec -ge 2 ]; do
+        sobra=$(($dec % 2))
+        bin=$sobra$bin
         dec=`expr $dec / 2` 
     done
+    bin=$dec$bin
+    echo 'Binario: ' "$bin"
     read pause
 }
 
