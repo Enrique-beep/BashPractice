@@ -109,15 +109,64 @@ decimalToOctal() {
     read pause
 }
 
+decimalToHexa() {
+    echo "  DECIMAL -> HEXADECIMAL"
+    echo -n "Introduzca decimal: "
+    read dec
+
+    hex=""
+    while [ $dec -ge 16 ]; do
+        sobra=$(($dec % 16))
+
+        if [ $sobra = 10 ]; then
+            hex=A$hex
+        elif [ $sobra = 11 ]; then
+            hex=B$hex
+        elif [ $sobra = 12 ]; then
+            hex=C$hex
+        elif [ $sobra = 13 ]; then
+            hex=D$hex
+        elif [ $sobra = 14 ]; then
+            hex=E$hex
+        elif [ $sobra = 15 ]; then
+            hex=F$hex
+        else
+            hex=$sobra$hex
+        fi
+
+        dec=$(($dec / 16))
+    done
+
+    if [ $dec -gt 9 ]; then
+		if [ $dec = 10 ]; then
+			hex=A$hex
+		elif [ $dec = 11 ]; then
+			hex=B$hex
+		elif [ $dec = 12 ]; then
+			hex=C$hex
+		elif [ $dec = 13 ]; then
+			hex=D$hex
+		elif [ $dec = 14 ]; then
+		 	hex=E$hex
+		elif [ $dec = 15 ]; then
+			hex=F$hex
+		fi
+    else
+        hex=$dec$hex
+    fi
+    echo 'Hexadecimal: ' $hex
+    read pause
+}
+
 # <!---   MAIN    --->
 option=0
 while [ $option != 9 ]; do
-    echo "[1] Convertir un numero Binario a Decimal"
-    echo "[2] Convertir un numero Octal a Decimal"
+    echo "[1] Convertir un numero Binario a Decimal"      # LISTO
+    echo "[2] Convertir un numero Octal a Decimal"        # LISTO
     echo "[3] Convertir un numero Hexadecimal a Decimal"  # PENDIENTE
-    echo "[4] Convertir un numero Decimal a Binario"      
-    echo "[5] Convertir un numero Decimal a Octal"
-    echo "[6] Convertir un numero Decimal a Hexadecimal"
+    echo "[4] Convertir un numero Decimal a Binario"      # LISTO
+    echo "[5] Convertir un numero Decimal a Octal"        # LISTO  
+    echo "[6] Convertir un numero Decimal a Hexadecimal"  # LISTO
     echo "[7] Convertir un numero Binario a Hexadecimal"
     echo "[8] Convertir un numero Hexadecimal a Binario"
     echo "[9] Salir"
@@ -131,7 +180,7 @@ while [ $option != 9 ]; do
         3) hexaToDecimal;;
         4) decimalToBinary;;
         5) decimalToOctal;;
-        6) ;;
+        6) decimalToHexa;;
         7) ;;
         8) ;;
         9) ;;
