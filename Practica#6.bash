@@ -14,8 +14,8 @@ binaryToDecimal () {
             pow=$((pow*2))
             bin=$(expr $bin / 10)
         done
-        echo "Decimal: " $dec
     done
+    echo "Decimal: " $dec
     read pause 
 }
 
@@ -158,6 +158,66 @@ decimalToHexa() {
     read pause
 }
 
+binaryToHexa() {
+    echo "  BINARIO -> HEXADECIMAL"
+    echo -n "Introduzca binario: "
+    read bin
+
+    while [ $bin != 0 ]; do
+        dec=0
+        pow=1
+        while [ $bin != 0 ]; do
+            aux=$(expr $bin % 10)
+            dec=$((dec + (aux*pow)))
+            pow=$((pow*2))
+            bin=$(expr $bin / 10)
+        done
+    done
+
+    hex=""
+    while [ $dec -ge 16 ]; do
+        sobra=$(($dec % 16))
+
+        if [ $sobra = 10 ]; then
+            hex=A$hex
+        elif [ $sobra = 11 ]; then
+            hex=B$hex
+        elif [ $sobra = 12 ]; then
+            hex=C$hex
+        elif [ $sobra = 13 ]; then
+            hex=D$hex
+        elif [ $sobra = 14 ]; then
+            hex=E$hex
+        elif [ $sobra = 15 ]; then
+            hex=F$hex
+        else
+            hex=$sobra$hex
+        fi
+
+        dec=$(($dec / 16))
+    done
+
+    if [ $dec -gt 9 ]; then
+		if [ $dec = 10 ]; then
+			hex=A$hex
+		elif [ $dec = 11 ]; then
+			hex=B$hex
+		elif [ $dec = 12 ]; then
+			hex=C$hex
+		elif [ $dec = 13 ]; then
+			hex=D$hex
+		elif [ $dec = 14 ]; then
+		 	hex=E$hex
+		elif [ $dec = 15 ]; then
+			hex=F$hex
+		fi
+    else
+        hex=$dec$hex
+    fi
+    echo 'Hexadecimal: ' $hex
+    read pause
+}
+
 # <!---   MAIN    --->
 option=0
 while [ $option != 9 ]; do
@@ -167,7 +227,7 @@ while [ $option != 9 ]; do
     echo "[4] Convertir un numero Decimal a Binario"      # LISTO
     echo "[5] Convertir un numero Decimal a Octal"        # LISTO  
     echo "[6] Convertir un numero Decimal a Hexadecimal"  # LISTO
-    echo "[7] Convertir un numero Binario a Hexadecimal"
+    echo "[7] Convertir un numero Binario a Hexadecimal"  # LISTO
     echo "[8] Convertir un numero Hexadecimal a Binario"
     echo "[9] Salir"
     echo -n "Opcion: "
@@ -181,7 +241,7 @@ while [ $option != 9 ]; do
         4) decimalToBinary;;
         5) decimalToOctal;;
         6) decimalToHexa;;
-        7) ;;
+        7) binaryToHexa;;
         8) ;;
         9) ;;
         *) echo "Opcion no valida"
