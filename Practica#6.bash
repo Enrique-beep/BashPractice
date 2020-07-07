@@ -5,15 +5,14 @@ binaryToDecimal () {
     echo "  BINARIO -> DECIMAL"
     echo -n "Introduzca binario: "
     read bin
+
+    dec=0
+    pow=1
     while [ $bin != 0 ]; do
-        dec=0
-        pow=1
-        while [ $bin != 0 ]; do
-            aux=$(expr $bin % 10)
-            dec=$((dec + (aux*pow)))
-            pow=$((pow*2))
-            bin=$(expr $bin / 10)
-        done
+        aux=$(expr $bin % 10)
+        dec=$((dec + (aux*pow)))
+        pow=$((pow*2))
+        bin=$(expr $bin / 10)
     done
     echo "Decimal: " $dec
     read pause 
@@ -218,6 +217,54 @@ binaryToHexa() {
     read pause
 }
 
+hexaToBinary() {
+    echo "  HEXADECIMAL --> BINARIO"
+    echo -n "Introduzca hexadecimal: "
+    read hex
+
+    len=$(echo -n $hex | wc -m)
+	len=$((len-1))
+	i=0
+	power=$len
+
+    while [ $i -le $len ]; do
+        if [ ${hex:i:1} = A ] || [ ${hex:i:1} = B ] || [ ${hex:i:1} = C ] || [ ${hex:i:1} = D ] | [ ${hex:i:1} = E ] || [ ${hex:i:1} = F ]; then
+
+            case ${hex:i:1} in
+				A) decimal=$((decimal+(10*(16**power))));;
+				B) decimal=$((decimal+(11*(16**power))));;
+				C) decimal=$((decimal+(12*(16**power))));;
+				D) decimal=$((decimal+(13*(16**power))));;
+				E) decimal=$((decimal+(14*(16**power))));;
+				F) decimal=$((decimal+(15*(16**power))));;
+            esac
+            power=$((power-1))
+			i=$((i+1))
+			continue
+        fi
+
+        if [ ${hex:i:1} -gt 0 ] && [ ${hex:i:1} -lt 10 ];
+		then
+			num=${hex:i:1}
+			decimal=$((decimal+(num*(16**power))))
+		fi
+		power=$((power-1))
+		i=$((i+1))
+    done
+
+    binary=0
+	pow=1
+	while [ $decimal -ne 0 ]
+	do
+		ex=$(expr $decimal % 2)
+		binary=$((binary+(ex*pow)))
+		decimal=$(expr $decimal / 2)
+		pow=$((pow*10))
+	done
+	echo $binary	
+    read pause
+}
+
 # <!---   MAIN    --->
 option=0
 while [ $option != 9 ]; do
@@ -228,7 +275,7 @@ while [ $option != 9 ]; do
     echo "[5] Convertir un numero Decimal a Octal"        # LISTO  
     echo "[6] Convertir un numero Decimal a Hexadecimal"  # LISTO
     echo "[7] Convertir un numero Binario a Hexadecimal"  # LISTO
-    echo "[8] Convertir un numero Hexadecimal a Binario"
+    echo "[8] Convertir un numero Hexadecimal a Binario"  # PENDIENTE
     echo "[9] Salir"
     echo -n "Opcion: "
     read option
@@ -242,8 +289,8 @@ while [ $option != 9 ]; do
         5) decimalToOctal;;
         6) decimalToHexa;;
         7) binaryToHexa;;
-        8) ;;
-        9) ;;
+        8) hexaToBinary;;
+        9) break;;
         *) echo "Opcion no valida"
     esac
     clear
