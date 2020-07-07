@@ -36,19 +36,17 @@ octaltoDecimal () {
 }
 
 hexaToDecimal() {
-    echo "  HEXADECIMAL -> DECIMAL"
-    echo -n "Introduzca hexadecimal: "
-    read hex
-
-	#Begin
+  echo "  HEXADECIMAL -> DECIMAL"
+  echo -n "Introduzca hexadecimal: "
+  read hex
+    
 	len=$(echo -n $hex | wc -m)
 	len=$((len-1))
 	i=0
 	power=$len
 	while [ $i -le $len ];
 	do
-		if [ ${hex:i:1}=A ] || [ ${hex:i:1}=B ] || [ ${hex:i:1}=C ] || [ ${hex:i:1}=D ] | [ ${hex:i:1}=E ] || [ ${hex:i:1}=F ]; #Validating chars
-		then
+		if [ ${hex:i:1} = A ] || [ ${hex:i:1} = B ] || [ ${hex:i:1} = C ] || [ ${hex:i:1} = D ] || [ ${hex:i:1} = E ] || [ ${hex:i:1} = F ]; then
 			case ${hex:i:1} in
 					A) decimal=$((decimal+(10*(16**power))));;
 					B) decimal=$((decimal+(11*(16**power))));;
@@ -70,7 +68,7 @@ hexaToDecimal() {
 		power=$((power-1))
 		i=$((i+1))
 	done
-	echo $decimal
+	echo 'Decimal: ' $decimal
 	decimal=0
 	read pausa
 }
@@ -261,7 +259,7 @@ hexaToBinary() {
 		decimal=$(expr $decimal / 2)
 		pow=$((pow*10))
 	done
-	echo $binary	
+	echo 'Binario: ' $binary	
     read pause
 }
 
